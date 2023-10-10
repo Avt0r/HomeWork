@@ -21,7 +21,7 @@ public class PedestrianController : MonoBehaviour
     private void Awake()
     {
         EventFather.SubscibeToRedLight(() => { _move = false; });
-        EventFather.SubscriveToGreenLight(() => { _move = true; });
+        EventFather.SubscribeToGreenLight(() => { _move = true; });
     }
 
     private void FixedUpdate()

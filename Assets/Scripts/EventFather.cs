@@ -14,7 +14,7 @@ public static class EventFather
         _light_red.AddListener(action);
     }
 
-    public static void SubscriveToGreenLight(UnityAction action)
+    public static void SubscribeToGreenLight(UnityAction action)
     {
         _light_green.AddListener(action);
     }
