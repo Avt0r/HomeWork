@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73801b1449c0fb342834c6cefcbde891, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  material_default: {fileID: 2100000, guid: 86388d378464a66429a8d88c30e44f7f, type: 2}
+  material_red: {fileID: 2100000, guid: 492d5fb82c71cc54e98c97bd05ecac53, type: 2}
+  material_yellow: {fileID: 2100000, guid: 5104bebafe88d474fa5970a064018e3d, type: 2}
+  material_green: {fileID: 2100000, guid: 7bda706d05586094f93a930a88bef7ae, type: 2}
+  delay_red_to_yellow: 2
+  delay_yellow_to_green: 1
+  delay_green_to_red: 2
