@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/CodeAssist.meta
+guid: cc0d67ad27f80824d8cedbbc260d30a2
+=======
 guid: 7138ab8b09a81ad4c8626cdc32b7ce59
+>>>>>>> Третье задание:Assets/Resources/Animations/Box.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

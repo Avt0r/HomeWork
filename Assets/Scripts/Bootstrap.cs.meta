@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/CodeAssist/Editor/Assister.cs.meta
+guid: 6853d026670ac2d4abc2e33a6ce84501
+=======
 guid: 09ee22511acaf674681a4a086cae30c4
+>>>>>>> Третье задание:Assets/Scripts/Bootstrap.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

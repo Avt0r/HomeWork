@@ -293,7 +293,7 @@ MonoBehaviour:
     type: 3}
   _levelGameObject: {fileID: 6622824010423721822, guid: 1475d2d1b8c9ce94ea2ad78bdb894165,
     type: 3}
-  _uiGameObject: {fileID: 6889167089343650165, guid: a7fe9b2806e7f7445b04aa89c13381f7,
+  _uiGameObject: {fileID: 2652996441914165782, guid: 1a9ce3d7b4445b04da55966e878b3b35,
     type: 3}
   _playerPosition: {x: 0, y: 1.1, z: 0}
   _levelPosition: {x: 0, y: 0, z: 0}

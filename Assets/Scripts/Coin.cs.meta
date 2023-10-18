@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/CodeAssist/Editor/EditorCoroutines/EditorWaitForSeconds.cs.meta
+guid: d3325ef565bb92d4a9e20cacf0d7850a
+=======
 guid: 781b4930362d034468b86385a761a7b7
+>>>>>>> Третье задание:Assets/Scripts/Coin.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

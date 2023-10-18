@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Canvas))]
 public class GameUI : Initializable
 {
 
@@ -12,11 +11,6 @@ public class GameUI : Initializable
 
     [SerializeField] private GameObject _uiWin;
     [SerializeField] private GameObject _uiGame;
-
-    private void OnValidate()
-    {
-        _canvas = _canvas != null ? _canvas : GetComponent<Canvas>();
-    }
 
     public override void Init()
     {

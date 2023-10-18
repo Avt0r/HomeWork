@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/CodeAssist/Editor/EditorCoroutines/EditorCoroutine.cs.meta
+guid: 226469d2a5927d3448adbf7a66b36289
+=======
 guid: 34b25160277aa364596a3af58bf786eb
+>>>>>>> Третье задание:Assets/Scripts/Box.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

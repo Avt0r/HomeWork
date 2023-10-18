@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins.meta
+guid: 97f1ce8670cd9d649b8368184b428d47
+=======
 guid: 38c6e55d4ad86224fb0544f8a7498ada
+>>>>>>> Третье задание:Assets/Resources/Animations.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
