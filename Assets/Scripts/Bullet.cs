@@ -18,4 +18,12 @@ public class Bullet : MonoBehaviour
 
         Destroy(gameObject, 10f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<Coin>(out var coin))
+        {
+            Bootstrap.Instance.Wallet.AddCoin(coin);
+        }
+    }
 }

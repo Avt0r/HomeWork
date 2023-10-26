@@ -24,9 +24,8 @@ public class PlayerController : Initializable
 
     private float _speedCurrent = 0f;
     private bool _canJump = true;
-    private int _coins = 0;
 
-    private InputHandler _inputHandler;
+    private Bootstrap _bootstrap;
 
     private void OnValidate()
     {
@@ -40,11 +39,18 @@ public class PlayerController : Initializable
         if (_inited) return;
         _inited = true;
 
+        _bootstrap = Bootstrap.Instance;
+
         _speedCurrent = _speed;
 
         _gazeDirection = Vector2.zero;
 
         Subscribe();
+    }
+
+    public override void Finish()
+    {
+        Unsubscribe();
     }
 
     private void FixedUpdate()
@@ -64,34 +70,34 @@ public class PlayerController : Initializable
 
     private void Subscribe()
     {
-        _inputHandler = Bootstrap.Instance.InputHandler;
-
-        _inputHandler.RunAction.performed += RunPerformed;
-        _inputHandler.RunAction.canceled += RunCanceled;
-        _inputHandler.JumpAction.performed += Jump;
-        _inputHandler.RightClickAction.performed += _weapon.ShootStart;
-        _inputHandler.RightClickAction.canceled += _weapon.ShootStop;
+        _bootstrap.InputHandler.RunAction.performed += RunPerformed;
+        _bootstrap.InputHandler.RunAction.canceled += RunCanceled;
+        _bootstrap.InputHandler.JumpAction.performed += Jump;
+        _bootstrap.InputHandler.RightClickAction.performed += _weapon.ShootStart;
+        _bootstrap.InputHandler.RightClickAction.canceled += _weapon.ShootStop;
     }
 
     private void Unsubscribe()
     {
-        _inputHandler.RunAction.performed -= RunPerformed;
-        _inputHandler.RunAction.canceled -= RunCanceled;
-        _inputHandler.JumpAction.performed -= Jump;
-        _inputHandler.RightClickAction.performed -= _weapon.ShootStart;
-        _inputHandler.RightClickAction.canceled -= _weapon.ShootStop;
+        _bootstrap.InputHandler.RunAction.performed -= RunPerformed;
+        _bootstrap.InputHandler.RunAction.canceled -= RunCanceled;
+        _bootstrap.InputHandler.JumpAction.performed -= Jump;
+        _bootstrap.InputHandler.RightClickAction.performed -= _weapon.ShootStart;
+        _bootstrap.InputHandler.RightClickAction.canceled -= _weapon.ShootStop;
     }
 
     private void Move()
     {
-        Vector2 inputVector = Bootstrap.Instance.InputHandler.GetPlayerMoveInput();
+        Vector2 inputVector = _bootstrap.InputHandler.GetPlayerMoveInput();
 
-        _rb.velocity = (transform.forward * inputVector.y + transform.right * inputVector.x).normalized * _speedCurrent;
+        Vector3 moveVector = (transform.forward * inputVector.y + transform.right * inputVector.x).normalized * _speedCurrent;
+
+        _rb.velocity = new(moveVector.x, _rb.velocity.y, moveVector.z);
     }
 
     private void Rotate()
     {
-        Vector2 input = Bootstrap.Instance.InputHandler.GetMouseMoveInput();
+        Vector2 input = _bootstrap.InputHandler.GetMouseMoveInput();
 
         _gazeDirection.x += input.x * _sensitivityX;
         _gazeDirection.y -= input.y * _sensitivityY;
@@ -126,15 +132,15 @@ public class PlayerController : Initializable
         {
             _canJump = true;
         }
-        if (collision.gameObject.GetComponent<Coin>())
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<Coin>(out var coin))
         {
-            Destroy(collision.gameObject);
-            _coins++;
-            Bootstrap.Instance.UI.UpdateCoins(_coins);
-            if (_coins == 4)
-            {
-                Bootstrap.Instance.UI.ShowWin();
-            }
+            _bootstrap.Wallet.AddCoin(coin);
         }
     }
 
@@ -145,4 +151,6 @@ public class PlayerController : Initializable
             _canJump = false;
         }
     }
+
+    public Transform Camera => _camera;
 }

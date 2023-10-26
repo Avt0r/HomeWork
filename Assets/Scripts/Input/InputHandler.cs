@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputHandler : Initializable
-{ 
+{
 
     private GameInput _gameInput;
 
@@ -16,20 +16,48 @@ public class InputHandler : Initializable
         _gameInput = new();
 
         _gameInput.Enable();
+
+        StartCoroutine(CursorVisibleChanger());
     }
 
-    public Vector2 GetPlayerMoveInput()
-   {
-        return _gameInput.Player.Move.ReadValue<Vector2>();
-   }
-
-    public Vector2 GetMouseMoveInput()
+    private void OnDestroy()
     {
-        return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        StopAllCoroutines();
     }
 
-    public InputAction RunAction { get => _gameInput.Player.Run; }
+    private IEnumerator CursorVisibleChanger()
+    {
+        while(true)
+        {
+            yield return null;
+            if(Input.GetKey(KeyCode.Escape))
+            {
+                CursorShow();
+            }
+            if(Input.anyKey && !Input.GetKey(KeyCode.Escape))
+            {
+                CursorHide();
+            }
+        }
+    }
 
-    public InputAction JumpAction { get => _gameInput.Player.Jump; }
-    public  InputAction RightClickAction { get => _gameInput.Player.RightClick; }
+    public void CursorHide()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void CursorShow()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public Vector2 GetPlayerMoveInput() => _gameInput.Player.Move.ReadValue<Vector2>();
+
+    public Vector2 GetMouseMoveInput() => new(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+    public InputAction RunAction => _gameInput.Player.Run; 
+
+    public InputAction JumpAction => _gameInput.Player.Jump; 
+    public  InputAction RightClickAction => _gameInput.Player.RightClick; 
 }
